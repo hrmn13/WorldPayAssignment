@@ -45,14 +45,6 @@ export default class AccountSearchComponent extends LightningElement {
             });
     }
 
-    /* toggleContactsSection() {
-        this.showContacts = !this.showContacts;
-    }
-
-    toggleCasesSection() {
-        this.showCases = !this.showCases;
-    } */
-
     choiceSelectionHandler(event){
         let selectedRecord = event.currentTarget.dataset.item;
         
