@@ -1,0 +1,29 @@
+<template>
+    <lightning-card title="Related Information">
+        <lightning-accordion allow-multiple-sections-open="true" active-section-name={activeSections}>
+
+            <!-- Contacts Section -->
+            <lightning-accordion-section name="contacts" label="Related Contacts">
+                <template if:true={contacts}>
+                    <lightning-datatable key-field="id" hide-checkbox-column="true" data={contacts} columns={conColList}>
+                    </lightning-datatable>
+                </template>
+                <template if:false={contacts}>
+                    <p>No Contacts found</p>
+                </template>
+            </lightning-accordion-section>
+
+            <!-- Cases Section -->
+            <lightning-accordion-section name="cases" label="Related Cases">
+                <template if:true={cases}>
+                    <lightning-datatable key-field="id" hide-checkbox-column="true" data={cases} columns={caseColList}>
+                    </lightning-datatable>
+                </template>
+                <template if:false={cases}>
+                    <p>No Cases found</p>
+                </template>
+            </lightning-accordion-section>
+
+        </lightning-accordion>
+    </lightning-card>
+</template>

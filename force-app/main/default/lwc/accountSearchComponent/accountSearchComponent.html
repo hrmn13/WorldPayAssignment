@@ -1,0 +1,75 @@
+<template>
+    <lightning-card title="Account Search" icon-name="utility:search">
+        <div class="slds-form-element">
+            <div class="slds-form-element__control">
+                <div class="slds-combobox_container">
+                    <div class="marginStyle slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click slds-is-open">
+                        <div class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right"
+                            role="none">
+                            <template lwc:if={isAccountSelected}>
+                                <div class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_left-right"
+                                    role="none">
+                                    <span
+                                        class="slds-icon_container slds-icon-standard-account slds-combobox__input-entity-icon"
+                                        title="Account">
+                                         <lightning-icon icon-name="standard:search"></lightning-icon>
+                                        <span class="slds-assistive-text">Account</span>
+                                    </span>
+                                    <div role="combobox" tabindex="0"
+                                        class="slds-input_faux slds-combobox__input slds-combobox__input-value"
+                                        aria-labelledby="combobox-label-id-33" id="combobox-id-5-selected-value"
+                                        aria-controls="listbox-id-5" aria-expanded="false" aria-haspopup="listbox">
+                                        <span class="slds-truncate" id="combobox-value-id-20">{selectedAccount.selectedAccountName}</span>
+                                    </div>
+                                    <button class="slds-button slds-button_icon slds-input__icon slds-input__icon_right"
+                                        title="Remove selected option">
+                                        <lightning-icon icon-name="utility:close" size="x-small" onclick={removeSelectionHandler}></lightning-icon>
+                                        <span class="slds-assistive-text">Remove selected option</span>
+                                    </button>
+                                </div>
+                            </template>
+                            <template lwc:else>
+                                <lightning-input type="search" label="Search Accounts"
+                                    placeholder="Search by Account Name, Phone, Industry" onchange={handleSearch}>
+                                </lightning-input>
+                    
+                                <div id="listbox-id-3" class="slds-dropdown_length-with-icon-7 slds-dropdown_fluid"
+                                    role="listbox" tabindex="0" aria-busy="false">
+                                    <ul class="slds-listbox slds-listbox_vertical" role="presentation">
+                                        <template for:each={accounts} for:item="account">
+                                            <li key={account.Id} role="presentation" class="slds-listbox__item"
+                                                data-item={account.Id} onclick={choiceSelectionHandler}>
+                                                <div aria-selected="true"
+                                                    class="slds-media slds-listbox__option slds-listbox__option_entity slds-listbox__option_has-meta slds-has-focus"
+                                                    role="option" tabindex="0">
+                                                    <span class="slds-media__figure slds-listbox__option-icon">
+                                                        <span class="slds-icon_container slds-icon-standard-account">
+                                                        <lightning-icon icon-name="standard:account"></lightning-icon>
+                                                        </span>
+                                                    </span>
+                                                    <span class="slds-media__body">
+                                                        <span
+                                                            class="slds-listbox__option-text slds-listbox__option-text_entity">{account.Name}</span>
+                                                        <span
+                                                            class="slds-listbox__option-meta slds-listbox__option-meta_entity">{account.Industry} • {account.Phone}</span>
+                                                    </span>
+                                                </div>
+                                            </li>
+                                        </template>
+                                    </ul>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </lightning-card>
+
+    <!-- Calling Child Component -->
+    <template if:true={selectedAccount.selectedAccountId}>
+        <c-related-list-component
+            account-id={selectedAccount.selectedAccountId}>
+        </c-related-list-component>
+    </template>
+</template>
