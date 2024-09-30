@@ -38,4 +38,12 @@ export default class RelatedList extends LightningElement {
                 console.error('Error fetching related data:', error);
             });
     }
+
+    get isContactsAvailable(){
+        return this.contacts.length > 0 ? true : false;
+    }
+
+    get isCasesAvailable(){
+        return this.cases.length > 0 ? true : false;
+    }
 }

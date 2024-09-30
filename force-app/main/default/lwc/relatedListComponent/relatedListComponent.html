@@ -4,22 +4,22 @@
 
             <!-- Contacts Section -->
             <lightning-accordion-section name="contacts" label="Related Contacts">
-                <template if:true={contacts}>
+                <template lwc:if={isContactsAvailable}>
                     <lightning-datatable key-field="id" hide-checkbox-column="true" data={contacts} columns={conColList}>
                     </lightning-datatable>
                 </template>
-                <template if:false={contacts}>
+                <template lwc:else>
                     <p>No Contacts found</p>
                 </template>
             </lightning-accordion-section>
 
             <!-- Cases Section -->
             <lightning-accordion-section name="cases" label="Related Cases">
-                <template if:true={cases}>
+                <template lwc:if={isCasesAvailable}>
                     <lightning-datatable key-field="id" hide-checkbox-column="true" data={cases} columns={caseColList}>
                     </lightning-datatable>
                 </template>
-                <template if:false={cases}>
+                <template lwc:else>
                     <p>No Cases found</p>
                 </template>
             </lightning-accordion-section>

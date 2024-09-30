@@ -32,19 +32,6 @@ export default class AccountSearchComponent extends LightningElement {
         }, DELAY);
     }
 
-    handleAccountSelection(event) {
-        const accountId = event.currentTarget.dataset.id;
-        getRelatedData({ accountId })
-            .then((result) => {
-                this.selectedAccount = result.account;
-                this.contacts = result.contacts;
-                this.cases = result.cases;
-            })
-            .catch((error) => {
-                console.error('Error fetching related data:', error);
-            });
-    }
-
     choiceSelectionHandler(event){
         let selectedRecord = event.currentTarget.dataset.item;
         
